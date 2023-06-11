@@ -3,6 +3,7 @@ import { useState } from 'react'
 import storage from '../firebase/firebaseconfig'
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import Collections from './Collections';
 
 function App() {
 
@@ -92,6 +93,7 @@ function App() {
         <button onClick={googleAuth}>Sign In</button>
         <button onClick={signOutFunc}>Sign out</button>
         <p>{percent} "% done"</p>
+        <Collections />
       </div>
     </>
   )

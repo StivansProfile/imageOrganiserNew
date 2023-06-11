@@ -1,9 +1,10 @@
+import '../styles/Collections.css'
 
 export default function Collections(){
     return(
     <>
-        <div>
-            <h1>Collections</h1>
+        <div className='collectionsWrap'>
+            <h1>Here are your collections.</h1>
         </div>
     </>
     )
