@@ -91,7 +91,7 @@ function Upload() {
         <hr className='uploadHrs'></hr>
         {/* <button onClick={googleAuth}>Sign In</button> */}
         {/* <button onClick={signOutFunc}>Sign out</button> */}
-        <input type='text' placeholder='give your file a category...' id="fileCategoryInput"></input>
+        <input type='text' placeholder='Give your file a category...' id="fileCategoryInput"></input>
         <hr className='uploadHrs'></hr>
         <button onClick={handleUpload} id="uploadButton">Upload to the cloud</button>
         <hr className='uploadHrs'></hr>

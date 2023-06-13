@@ -21,10 +21,24 @@
     height: 50px;
 }
 
-#uploadButton{
-    background-color: rgb(12, 136, 224);
-    width: 300px;
-    font-size: 18px;
+#uploadButton {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: rgb(12, 136, 224);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  width: 300px;
+}
+#uploadButton:hover {
+  border-color: #646cff;
+}
+#uploadButton:focus,
+#uploadButton:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 #uploadPercentage{
@@ -37,20 +51,20 @@
     color: white;
 }
 
-/* Responsiveness */
 
+/* Responsiveness */
 @media only screen and (max-width: 600px) {
     .uploadWrapper{
-        width: auto;
+        width: 90%;
     };
     #fileInput{
         width: auto;
     }
     #fileCategoryInput{
-        width: auto;
+        width: 90%;
         font-size: 17px;
     }
     #uploadButton{
-        width: auto;
+        width: 90%;
     }
 }
