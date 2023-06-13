@@ -7,4 +7,50 @@
     border-radius: 5px 5px 5px 5px;
     width: 500px;
     height: 500px;
+    gap:30px;
+}
+
+#fileInput{
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+#fileCategoryInput{
+    font-size: 19px;
+    width: 300px;
+    height: 50px;
+}
+
+#uploadButton{
+    background-color: rgb(12, 136, 224);
+    width: 300px;
+    font-size: 18px;
+}
+
+#uploadPercentage{
+    font-size: 18px;
+    color: rgb(12, 136, 224);
+}
+
+.uploadHrs{
+    width: 60%;
+    color: white;
+}
+
+/* Responsiveness */
+
+@media only screen and (max-width: 600px) {
+    .uploadWrapper{
+        width: auto;
+    };
+    #fileInput{
+        width: auto;
+    }
+    #fileCategoryInput{
+        width: auto;
+        font-size: 17px;
+    }
+    #uploadButton{
+        width: auto;
+    }
 }

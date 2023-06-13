@@ -87,12 +87,15 @@ function Upload() {
   return (
     <>
       <div className='uploadWrapper'>
-        <input type="file" onChange={handleChange} accept="/image/*" />
+        <input type="file" onChange={handleChange} accept="/image/*" id="fileInput"/>
+        <hr className='uploadHrs'></hr>
         {/* <button onClick={googleAuth}>Sign In</button> */}
         {/* <button onClick={signOutFunc}>Sign out</button> */}
-        <input type='text' placeholder='give your file a category...'></input>
-        <button onClick={handleUpload}>Upload to Firebase</button>
-        <p>{percent} "% done"</p>
+        <input type='text' placeholder='give your file a category...' id="fileCategoryInput"></input>
+        <hr className='uploadHrs'></hr>
+        <button onClick={handleUpload} id="uploadButton">Upload to the cloud</button>
+        <hr className='uploadHrs'></hr>
+        <p id="uploadPercentage">{percent} "% done"</p>
       </div>
     </>
   )
