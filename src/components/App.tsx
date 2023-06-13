@@ -1,5 +1,6 @@
 import '../styles/App.css'
 import Upload from './Upload'
+import { googleAuth, signOutFunc } from '../firebase/firebaseauth'
 
 function Navbar(){
   return(
@@ -8,8 +9,8 @@ function Navbar(){
           <h2>Logged in as Profile Name</h2>
         </div>
         <div className='navbarLinksSection'>
-          <button className='navbarButtons'>Sign In</button>
-          <button className='navbarButtons'>Sign Out</button>
+          <button className='navbarButtons' onClick={googleAuth}>Sign In</button>
+          <button className='navbarButtons' onClick={signOutFunc}>Sign Out</button>
           <button className='navbarButtons'>Collections</button>
         </div>
     </div>
