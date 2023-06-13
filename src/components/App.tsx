@@ -4,10 +4,13 @@ import { googleAuth, signOutFunc } from '../firebase/firebaseauth'
 import {useState} from "react";
 
 function Navbar(){
+
+  const [userDisplayName, setUserDisplayName] = useState("");
+
   return(
     <div className='navbar'>
         <div className='navbarProfileSection'>
-          <h2>Logged in as</h2>
+          <h2>Logged in as {userDisplayName}</h2>
         </div>
         <div className='navbarLinksSection'>
           <button className='navbarButtons' onClick={() => {
@@ -18,6 +21,7 @@ function Navbar(){
         </div>
     </div>
   )
+
 }
 
 function App() {

@@ -1,6 +1,9 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
- 
+
+let userName: string;
+
 function googleAuth(){
+  
     const provider = new GoogleAuthProvider()
     const auth = getAuth();
     signInWithPopup(auth, provider)
@@ -12,7 +15,10 @@ function googleAuth(){
       }
       // The signed-in user info.
       const user = result.user;
-      return user.displayName;
+      if(typeof user.displayName === "string"){
+        userName = user.displayName
+        localStorage.setItem("displayName", userName)
+      }
       // IdP data available using getAdditionalUserInfo(result)
       // ...
     }).catch((error) => {
@@ -26,6 +32,8 @@ function googleAuth(){
       // ...
     });
 }
+
+export {userName};
 
 function signOutFunc(){
     const auth = getAuth();
