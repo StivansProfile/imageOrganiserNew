@@ -26,11 +26,17 @@ h1{
     width: 100px;
     height: 50px;
     background-color: rgb(12, 136, 224);
+    cursor: pointer;
 }
 
 .navbarButtons:focus{
     border: none;
     outline: none;
+}
+
+.navbarButtons:hover{
+    background-color: rgb(10, 119, 197);
+    border-radius: 5px 5px 5px 5px;
 }
 
 .navbarLinksSection{

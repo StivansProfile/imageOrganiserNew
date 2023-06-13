@@ -12,6 +12,7 @@ function googleAuth(){
       }
       // The signed-in user info.
       const user = result.user;
+      return user.displayName;
       // IdP data available using getAdditionalUserInfo(result)
       // ...
     }).catch((error) => {
