@@ -1,0 +1,63 @@
+.appWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+h1{
+    text-align: center;
+}
+
+.navbar{
+    width: 100%;
+    height: 100px;
+    background-color: rgb(12, 136, 224);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbarProfileSection{
+    margin-left: 10px;
+}
+
+
+.navbarButtons{
+    border: none;
+    font-size: 18px;
+    width: 100px;
+    height: 50px;
+    background-color: rgb(12, 136, 224);
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.navbarButtons:focus{
+    border: none;
+    outline: none;
+}
+
+.navbarButtons:hover{
+    background-color: rgb(10, 119, 197);
+    border-radius: 5px 5px 5px 5px;
+}
+
+.navbarLinksSection{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .navbar{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
