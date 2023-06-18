@@ -10,11 +10,19 @@ function Upload() {
   // file upload progress
   const [percent, setPercent] = useState(0);
 
+  const [imgCategory, setImgCategory] = useState("");
+
   // file upload event handler
   function handleChange(event: { target: HTMLInputElement; }){
     if(event.target.files != null){
       setFile(event.target.files[0]);
     }
+  }
+
+  function imgCategoryHandleChange(event: any){
+    setImgCategory(event.target.value);
+
+    console.log(imgCategory);
   }
 
   function handleUpload(){
@@ -23,7 +31,7 @@ function Upload() {
     }
     else{
         // storage instance ref
-        const storageRef = ref(storage, `/files/${file.name}`)
+        const storageRef = ref(storage, `/${imgCategory}/${file.name}`)
   
         //progress...
         const uploadTask = uploadBytesResumable(storageRef, file);
@@ -51,7 +59,8 @@ function Upload() {
       <div className='uploadWrapper'>
         <input type="file" onChange={handleChange} accept="/image/*" id="fileInput"/>
         <hr className='uploadHrs'></hr>
-        <input type='text' placeholder='Give your file a category...' id="fileCategoryInput"></input>
+        <input type='text' placeholder='Give your file a category...' id="fileCategoryInput"
+        value={imgCategory} onChange={imgCategoryHandleChange}></input>
         <hr className='uploadHrs'></hr>
         <button onClick={handleUpload} id="uploadButton">Upload to the cloud</button>
         <hr className='uploadHrs'></hr>

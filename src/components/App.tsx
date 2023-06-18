@@ -36,9 +36,11 @@ function Navbar(){
           <button className='navbarButtons' onClick={() => {
             const name = localStorage.getItem("displayName");
             googleAuth();
-            if(name)
-            setUserDisplayName(name)
-            setIsLoggedOut(false);
+            setTimeout(() => {
+              if(name)
+              setUserDisplayName(name)
+              setIsLoggedOut(false);
+            }, 5000)
           }}>Sign In</button>
           <button className='navbarButtons' onClick={() => {
             signOutFunc();
