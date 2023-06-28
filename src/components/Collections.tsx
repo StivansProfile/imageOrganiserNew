@@ -1,7 +1,7 @@
 import '../styles/Collections.css'
 import { Navbar } from './Home'
 import {useEffect, useState} from "react";
-import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, listAll, getDownloadURL, StorageReference } from 'firebase/storage';
 
 
 /*
@@ -25,7 +25,9 @@ firebase storage
 export default function Collections(){
 
     const storage = getStorage();
-    const listRef = ref(storage, '/random');
+
+    const listRef = ref(storage, "/");
+
 
     interface imageUrlFolders{
         folderNames: string[];
@@ -43,30 +45,40 @@ export default function Collections(){
     const myObject: imageUrlFolders = {folderNames: [], imageUrls: []}
 
     useEffect(() => {
-        const fetchData = async () => {
-            listAll(listRef)
-            .then((res) => {
-                res.prefixes.forEach((folderRef) => {
-                // console.log(folderRef);
-                });
-                res.items.forEach(async (itemRef) => {
-                    // retrieves name of the folder 
-                    console.log(itemRef.parent?.fullPath);
-                    if(itemRef.parent?.fullPath)
-                    myObject.folderNames.push(itemRef.parent.fullPath)
-    
-                    // retrieves the image url
-                    await getDownloadURL(itemRef)
-                    .then(async function(url){
-                        // console.log(url);
-                        myObject.imageUrls.push(url);
-                        addImageData(myObject);
-                        console.log(myObject);
-                    })
-                });
-            });
+    const fetchData = async () => {
+        const listAllItems = async (ref: StorageReference, parentFolderPath: string) => {
+        const items: StorageReference[] = [];
+        const prefixes: StorageReference[] = [];
+
+        await listAll(ref).then((res) => {
+            items.push(...res.items);
+            prefixes.push(...res.prefixes);
+        });
+
+        for (const prefixRef of prefixes) {
+            const folderName = prefixRef.fullPath.replace(parentFolderPath, '').replace(/^\//, '');
+            await listAllItems(prefixRef, parentFolderPath + folderName + '/'); // Recursively fetch items inside the folder
         }
-        fetchData();
+
+        for (const itemRef of items) {
+            // Retrieve the folder name
+            const folderName = parentFolderPath.replace(listRef.fullPath, '');
+            myObject.folderNames.push(folderName);
+
+            // Retrieve the image URL
+            const imageUrl = await getDownloadURL(itemRef);
+            myObject.imageUrls.push(imageUrl);
+
+            console.log('Folder Name:', folderName);
+            console.log('Image URL:', imageUrl);
+            addImageData(myObject);
+        }
+        };
+
+        listAllItems(listRef, '');
+    };
+
+    fetchData();
     }, []);
 
 
@@ -86,6 +98,6 @@ export default function Collections(){
                 ))}
                 </div>
             ))}
-        </div>//
+        </div>
     )
 }
