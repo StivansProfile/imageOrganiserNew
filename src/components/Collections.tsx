@@ -71,6 +71,12 @@ export default function Collections(){
 
             console.log('Folder Name:', folderName);
             console.log('Image URL:', imageUrl);
+
+            // TODO: remove duplicates from folder names array
+
+            console.log(`Folder names: ${myObject.folderNames}`);
+            myObject.folderNames = [...new Set(myObject.folderNames)];
+
             addImageData(myObject);
         }
         };
