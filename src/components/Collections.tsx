@@ -15,13 +15,23 @@ export default function Collections(){
         imageUrls: string[];
     }
 
+    interface mapObject{
+        dataa: string[];
+    }
+
     const [imageUrlFolders, setImageUrlFolders] = useState<imageUrlFolders[]>([]);
+    const [data, setData] = useState<mapObject[]>([]);
 
     function addImageData(object: imageUrlFolders){
         setImageUrlFolders([...imageUrlFolders, object]);
     }
 
+    function addData(object: mapObject){
+        setData([...data, object]);
+    }
+
     const myObject: imageUrlFolders = {folderNames: [], imageUrls: []}
+    const myDataObject: mapObject = {dataa: []}
 
     useEffect(() => {
     const fetchData = async () => {
@@ -43,18 +53,23 @@ export default function Collections(){
             // Retrieve the folder name
             const folderName = parentFolderPath.replace(listRef.fullPath, '');
             myObject.folderNames.push(folderName);
+            myDataObject.dataa.push(folderName)
 
             // Retrieve the image URL
             const imageUrl = await getDownloadURL(itemRef);
             myObject.imageUrls.push(imageUrl);
+            myDataObject.dataa.push(imageUrl);
 
             console.log('Folder Name:', folderName);
             console.log('Image URL:', imageUrl);
 
             console.log(`Folder names: ${myObject.folderNames}`);
             myObject.folderNames = [...new Set(myObject.folderNames)];
+            myDataObject.dataa = [...new Set(myDataObject.dataa)];
 
-            addImageData(myObject);
+            // addImageData(myObject);
+            addData(myDataObject);
+            // console.log(myObject);
         }
         };
 
@@ -100,13 +115,17 @@ export default function Collections(){
             <Navbar />
             <h1>Here are your collections.</h1>
 
-            <div className='collections'>
-                <div className='innerCollections'>
-                    <div className='individualCollections'>
-                        <FolderNames />
-                        <ImagesFromFolders />
-                    </div>
+            <div className='imagesFromFolders'>
+            {data.map((object) => (
+                <div>
+                    {object.dataa.map((imageUrl) => (
+                        <div>
+                            <h2>{imageUrl}</h2>
+                            <img key={imageUrl} src={imageUrl} alt='Collection' width='10%' height='50%' />
+                        </div>
+                    ))}
                 </div>
+            ))}
             </div>
 
         </div>
