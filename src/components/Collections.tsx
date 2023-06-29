@@ -100,7 +100,7 @@ export default function Collections(){
                             }
                             {/* <h2>{imageUrl}</h2>
                             <img key={imageUrl} src={imageUrl} alt='Collection' width='10%' height='50%' /> */}
-                            <hr></hr>
+                            {/* <hr></hr> */}
                         </div>
                     ))}
                 </div>
