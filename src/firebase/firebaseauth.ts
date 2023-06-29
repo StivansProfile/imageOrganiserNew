@@ -1,5 +1,5 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, setPersistence } from "firebase/auth";
-import { browserLocalPersistence } from "firebase/auth/cordova";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, setPersistence, inMemoryPersistence } from "firebase/auth";
+import { browserLocalPersistence} from "firebase/auth/cordova";
 
 let userName: string;
 

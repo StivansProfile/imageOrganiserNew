@@ -17,6 +17,7 @@ function Navbar(){
       console.log("not empty")
     }
 
+
   }, [userDisplayName])
 
   return(
