@@ -4,3 +4,13 @@
     align-items: center;
     gap:10px;
 }
+
+.containers{
+    display: flex;
+    flex-direction: column;
+}
+
+.innerContainer{
+    display: flex;
+    flex-direction: column;
+}

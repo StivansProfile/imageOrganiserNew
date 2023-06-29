@@ -1,27 +1,34 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, setPersistence } from "firebase/auth";
+import { browserLocalPersistence } from "firebase/auth/cordova";
 
 let userName: string;
 
-function googleAuth(){
-  
-    const provider = new GoogleAuthProvider()
-    const auth = getAuth();
-    signInWithPopup(auth, provider)
+function googleAuth() {
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth();
+
+  // Set the persistence to local to allow the user to stay signed in after page refresh
+  setPersistence(auth, browserLocalPersistence)
+    .then(() => {
+      // Sign in with Google using popup
+      return signInWithPopup(auth, provider);
+    })
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      if(credential != null){
+      if (credential !== null) {
         const token = credential.accessToken;
       }
       // The signed-in user info.
       const user = result.user;
-      if(typeof user.displayName === "string"){
-        userName = user.displayName
-        localStorage.setItem("displayName", userName)
+      if (typeof user.displayName === "string") {
+        const userName = user.displayName;
+        localStorage.setItem("displayName", userName);
       }
       // IdP data available using getAdditionalUserInfo(result)
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
