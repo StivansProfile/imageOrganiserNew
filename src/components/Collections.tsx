@@ -12,7 +12,7 @@ export default function Collections(){
 
     interface imageUrlFolders{
         folderNames: string[];
-        imageUrls: string[][];
+        imageUrls: string[];
     }
 
     const [imageUrlFolders, setImageUrlFolders] = useState<imageUrlFolders[]>([]);
@@ -46,7 +46,7 @@ export default function Collections(){
 
             // Retrieve the image URL
             const imageUrl = await getDownloadURL(itemRef);
-            myObject.imageUrls.push([imageUrl]);
+            myObject.imageUrls.push(imageUrl);
 
             console.log('Folder Name:', folderName);
             console.log('Image URL:', imageUrl);
@@ -83,8 +83,8 @@ export default function Collections(){
             <div className='imagesFromFolders'>
             {imageUrlFolders.map((object) => (
                 <div>
-                    {object.imageUrls.map((imageUrl, index) => (
-                        <img key={imageUrl[index]} src={imageUrl[index]} alt='Collection' width='10%' height='50%' />
+                    {object.imageUrls.map((imageUrl) => (
+                        <img key={imageUrl} src={imageUrl} alt='Collection' width='10%' height='50%' />
                     ))}
                 </div>
             ))}
