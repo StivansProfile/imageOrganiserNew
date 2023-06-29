@@ -12,7 +12,7 @@ export default function Collections(){
 
     interface imageUrlFolders{
         folderNames: string[];
-        imageUrls: string[];
+        imageUrls: string[][];
     }
 
     const [imageUrlFolders, setImageUrlFolders] = useState<imageUrlFolders[]>([]);
@@ -46,7 +46,7 @@ export default function Collections(){
 
             // Retrieve the image URL
             const imageUrl = await getDownloadURL(itemRef);
-            myObject.imageUrls.push(imageUrl);
+            myObject.imageUrls.push([imageUrl]);
 
             console.log('Folder Name:', folderName);
             console.log('Image URL:', imageUrl);
@@ -64,6 +64,34 @@ export default function Collections(){
     fetchData();
     }, []);
 
+    function FolderNames(){
+        return(
+            <div className='folderNames'>
+            {imageUrlFolders.map((object) => (
+                <div>
+                    {object.folderNames.map((folderName) => (
+                        <h2>{folderName}</h2>
+                    ))}
+                </div>
+            ))}
+            </div>
+        );
+    }
+
+    function ImagesFromFolders(){
+        return(
+            <div className='imagesFromFolders'>
+            {imageUrlFolders.map((object) => (
+                <div>
+                    {object.imageUrls.map((imageUrl, index) => (
+                        <img key={imageUrl[index]} src={imageUrl[index]} alt='Collection' width='10%' height='50%' />
+                    ))}
+                </div>
+            ))}
+            </div>
+        );
+    }
+
 
     // TODO Style the image/folder containers
 
@@ -71,19 +99,16 @@ export default function Collections(){
         <div className='collectionsWrap'>
             <Navbar />
             <h1>Here are your collections.</h1>
-            {imageUrlFolders.map((object) => (
-                <div className='containers'>
-                    <div className='innerContainer'>
-                        {object.folderNames.map((folderName) => (
-                            <h2>{folderName}</h2>
-                        ))}
-                            
-                        {object.imageUrls.map((imageUrl) => (
-                            <img key={imageUrl} src={imageUrl} alt='Collection' width='10%' height='50%' />
-                        ))}
+
+            <div className='collections'>
+                <div className='innerCollections'>
+                    <div className='individualCollections'>
+                        <FolderNames />
+                        <ImagesFromFolders />
                     </div>
                 </div>
-            ))}
+            </div>
+
         </div>
     )
 }

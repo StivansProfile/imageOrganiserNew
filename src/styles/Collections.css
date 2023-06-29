@@ -5,12 +5,17 @@
     gap:10px;
 }
 
-.containers{
+.collections{
     display: flex;
     flex-direction: column;
 }
 
-.innerContainer{
+.innerCollections{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.individualCollections{
+    display: flex;
+    justify-content: center;
 }
