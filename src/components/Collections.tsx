@@ -79,34 +79,6 @@ export default function Collections(){
     fetchData();
     }, []);
 
-    function FolderNames(){
-        return(
-            <div className='folderNames'>
-            {imageUrlFolders.map((object) => (
-                <div>
-                    {object.folderNames.map((folderName) => (
-                        <h2>{folderName}</h2>
-                    ))}
-                </div>
-            ))}
-            </div>
-        );
-    }
-
-    function ImagesFromFolders(){
-        return(
-            <div className='imagesFromFolders'>
-            {imageUrlFolders.map((object) => (
-                <div>
-                    {object.imageUrls.map((imageUrl) => (
-                        <img key={imageUrl} src={imageUrl} alt='Collection' width='10%' height='50%' />
-                    ))}
-                </div>
-            ))}
-            </div>
-        );
-    }
-
 
     // TODO Style the image/folder containers
 
@@ -117,17 +89,23 @@ export default function Collections(){
 
             <div className='imagesFromFolders'>
             {data.map((object) => (
-                <div>
+                <div className='imageContainerWrap'>
                     {object.dataa.map((imageUrl) => (
-                        <div>
-                            <h2>{imageUrl}</h2>
-                            <img key={imageUrl} src={imageUrl} alt='Collection' width='10%' height='50%' />
+                        <div className='imageContainer'>
+                            {
+                                    imageUrl.includes("https") ? <img
+                                    key={imageUrl} src={imageUrl} alt="Collections" width="10%" height="10%">
+                                    </img>:
+                                    <h2>{imageUrl}</h2>
+                            }
+                            {/* <h2>{imageUrl}</h2>
+                            <img key={imageUrl} src={imageUrl} alt='Collection' width='10%' height='50%' /> */}
+                            <hr></hr>
                         </div>
                     ))}
                 </div>
             ))}
             </div>
-
         </div>
     )
 }

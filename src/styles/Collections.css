@@ -4,18 +4,3 @@
     align-items: center;
     gap:10px;
 }
-
-.collections{
-    display: flex;
-    flex-direction: column;
-}
-
-.innerCollections{
-    display: flex;
-    flex-direction: row;
-}
-
-.individualCollections{
-    display: flex;
-    justify-content: center;
-}
