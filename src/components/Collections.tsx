@@ -32,6 +32,7 @@ export default function Collections(){
         const listAllItems = async (ref: StorageReference, parentFolderPath: string) => {
         const items: StorageReference[] = [];
         const prefixes: StorageReference[] = [];
+        let firstImageFound = false;
 
         await listAll(ref).then((res) => {
             items.push(...res.items);
@@ -50,7 +51,12 @@ export default function Collections(){
 
             // Retrieve the image URL
             const imageUrl = await getDownloadURL(itemRef);
-            // myDataObject.dataa.push(imageUrl);
+
+            if(!firstImageFound){
+                myDataObject.dataa.push(imageUrl);
+                firstImageFound = true;
+            }
+
 
             console.log('Folder Name:', folderName);
             console.log('Image URL:', imageUrl);
