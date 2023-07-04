@@ -3,34 +3,28 @@ import { Navbar } from './Home'
 import {useEffect, useState} from "react";
 import { getStorage, ref, listAll, getDownloadURL, StorageReference } from 'firebase/storage';
 
+/*
+TODO: Make the collection component look like
+TODO: a normal camera roll
+*/
+
+
 export default function Collections(){
 
     const storage = getStorage();
 
     const listRef = ref(storage, "/");
 
-
-    interface imageUrlFolders{
-        folderNames: string[];
-        imageUrls: string[];
-    }
-
     interface mapObject{
         dataa: string[];
     }
 
-    const [imageUrlFolders, setImageUrlFolders] = useState<imageUrlFolders[]>([]);
     const [data, setData] = useState<mapObject[]>([]);
-
-    function addImageData(object: imageUrlFolders){
-        setImageUrlFolders([...imageUrlFolders, object]);
-    }
 
     function addData(object: mapObject){
         setData([...data, object]);
     }
 
-    const myObject: imageUrlFolders = {folderNames: [], imageUrls: []}
     const myDataObject: mapObject = {dataa: []}
 
     useEffect(() => {
@@ -52,19 +46,15 @@ export default function Collections(){
         for (const itemRef of items) {
             // Retrieve the folder name
             const folderName = parentFolderPath.replace(listRef.fullPath, '');
-            myObject.folderNames.push(folderName);
             myDataObject.dataa.push(folderName)
 
             // Retrieve the image URL
             const imageUrl = await getDownloadURL(itemRef);
-            myObject.imageUrls.push(imageUrl);
             // myDataObject.dataa.push(imageUrl);
 
             console.log('Folder Name:', folderName);
             console.log('Image URL:', imageUrl);
 
-            console.log(`Folder names: ${myObject.folderNames}`);
-            myObject.folderNames = [...new Set(myObject.folderNames)];
             myDataObject.dataa = [...new Set(myDataObject.dataa)];
 
             // addImageData(myObject);
@@ -85,7 +75,7 @@ export default function Collections(){
     return(
         <div className='collectionsWrap'>
             <Navbar />
-            <h1>Here are all of your collections.</h1>
+            <h1>All collections</h1>
 
             <div className='imagesFromFolders'>
             {data.map((object) => (
