@@ -58,7 +58,7 @@ export default function Collections(){
             // Retrieve the image URL
             const imageUrl = await getDownloadURL(itemRef);
             myObject.imageUrls.push(imageUrl);
-            myDataObject.dataa.push(imageUrl);
+            // myDataObject.dataa.push(imageUrl);
 
             console.log('Folder Name:', folderName);
             console.log('Image URL:', imageUrl);
@@ -85,12 +85,12 @@ export default function Collections(){
     return(
         <div className='collectionsWrap'>
             <Navbar />
-            <h1>Here are your collections.</h1>
+            <h1>Here are all of your collections.</h1>
 
             <div className='imagesFromFolders'>
             {data.map((object) => (
                 <div className='imageContainerWrap'>
-                    {object.dataa.map((imageUrl) => (
+                    {object.dataa.map((imageUrl, index) => (
                         <div className='imageContainer'>
                             {
                                     imageUrl.includes("https") ? <img
