@@ -52,6 +52,7 @@ export default function Collections(){
             // Retrieve the image URL
             const imageUrl = await getDownloadURL(itemRef);
 
+            // logic for finding the first image of a collection
             if(!firstImageFound){
                 myDataObject.dataa.push(imageUrl);
                 firstImageFound = true;
@@ -86,7 +87,7 @@ export default function Collections(){
             <div className='imagesFromFolders'>
             {data.map((object) => (
                 <div className='imageContainerWrap'>
-                    {object.dataa.map((imageUrl, index) => (
+                    {object.dataa.map((imageUrl) => (
                         <div className='imageContainer'>
                             {
                                     imageUrl.includes("https") ? <img
