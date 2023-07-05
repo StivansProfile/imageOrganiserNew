@@ -1,6 +1,6 @@
 import '../styles/Collections.css'
 import { Navbar } from './Home'
-import Whole from "./EntireCollection";
+import EntireCollection from "./EntireCollection";
 import {useEffect, useState} from "react";
 import { getStorage, ref, listAll, getDownloadURL, StorageReference } from 'firebase/storage';
 
@@ -90,7 +90,7 @@ export default function Collections(){
 
     if(wantsToDisplay){
         return(
-            <Whole collectionName={currentCollectionName}/>
+            <EntireCollection collectionName={currentCollectionName}/>
         );
     }
 
