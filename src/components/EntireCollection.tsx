@@ -43,13 +43,13 @@ export default function EntireCollection(props: any){
     return(
         <div>
             <h1>Collection {props.collectionName}</h1>
-            <hr></hr>
+            <hr className='collectionHr'></hr>
 
             <h2>{folderName}</h2>
             {/* map out the images */}
             {imageUrls.map((element, index) => (
                 <img key={index} src={element}
-                width="50%"></img>
+                width="20%"></img>
             ))}
 
         </div>
