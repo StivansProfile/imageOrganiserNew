@@ -1,5 +1,6 @@
 import '../styles/Collections.css'
 import { Navbar } from './Home'
+import Whole from "./EntireCollection";
 import {useEffect, useState} from "react";
 import { getStorage, ref, listAll, getDownloadURL, StorageReference } from 'firebase/storage';
 
@@ -21,6 +22,7 @@ export default function Collections(){
 
     const [data, setData] = useState<mapObject[]>([]);
     const [wantsToDisplay, setWantsToDisplay] = useState<boolean>(false);
+    const [currentCollectionName, setCurrentCollectionName] = useState("");
 
     function addData(object: mapObject){
         setData([...data, object]);
@@ -28,6 +30,7 @@ export default function Collections(){
 
     function displayEntireCollection(collectionName: string){
         console.log(collectionName);
+        setCurrentCollectionName(collectionName);
         setWantsToDisplay(true);
     }
 
@@ -84,6 +87,12 @@ export default function Collections(){
 
 
     // TODO Style the image/folder containers
+
+    if(wantsToDisplay){
+        return(
+            <Whole collectionName={currentCollectionName}/>
+        );
+    }
 
     return(
         <div className='collectionsWrap'>
