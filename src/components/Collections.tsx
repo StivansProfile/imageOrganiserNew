@@ -108,12 +108,12 @@ export default function Collections(){
                                 console.log("hello");
                             }}>
                             {
-                                    imageUrl.includes("https") ? <img
-                                    key={imageUrl} src={imageUrl} alt="Collections" width="30%" height="30%">
+                                imageUrl.includes("https") ? <img
+                                key={imageUrl} src={imageUrl} alt="Collections" width="30%" height="30%">
                                     </img>:
                                     <button onClick={() => displayEntireCollection(imageUrl)}>{imageUrl}</button>
                                     
-                            }
+                                }
                             {/* <h2>{imageUrl}</h2>
                             <img key={imageUrl} src={imageUrl} alt='Collection' width='10%' height='50%' /> */}
                             </div>
