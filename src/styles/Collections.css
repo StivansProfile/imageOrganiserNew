@@ -5,16 +5,14 @@
     gap:50px;
 }
 
+
+
 .imageContainerWrap{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    gap:30px;
+    gap: 30px;
 }
 
-.imageContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.innerImageContainer{
+    cursor: pointer;
 }
-

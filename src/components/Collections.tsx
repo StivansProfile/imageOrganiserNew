@@ -20,9 +20,15 @@ export default function Collections(){
     }
 
     const [data, setData] = useState<mapObject[]>([]);
+    const [wantsToDisplay, setWantsToDisplay] = useState<boolean>(false);
 
     function addData(object: mapObject){
         setData([...data, object]);
+    }
+
+    function displayEntireCollection(collectionName: string){
+        console.log(collectionName);
+        setWantsToDisplay(true);
     }
 
     const myDataObject: mapObject = {dataa: []}
@@ -89,16 +95,22 @@ export default function Collections(){
                 <div className='imageContainerWrap'>
                     {object.dataa.map((imageUrl) => (
                         <div className='imageContainer'>
+                            <div className='innerImageContainer' onClick={() => {
+                                console.log("hello");
+                            }}>
                             {
                                     imageUrl.includes("https") ? <img
-                                    key={imageUrl} src={imageUrl} alt="Collections" width="10%" height="10%">
+                                    key={imageUrl} src={imageUrl} alt="Collections" width="30%" height="30%">
                                     </img>:
-                                    <h2>{imageUrl}</h2>
+                                    <button onClick={() => displayEntireCollection(imageUrl)}>{imageUrl}</button>
+                                    
                             }
                             {/* <h2>{imageUrl}</h2>
                             <img key={imageUrl} src={imageUrl} alt='Collection' width='10%' height='50%' /> */}
-                            {/* <hr></hr> */}
+                            </div>
+                            <hr></hr>
                         </div>
+
                     ))}
                 </div>
             ))}
