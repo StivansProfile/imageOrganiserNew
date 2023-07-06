@@ -32,9 +32,11 @@
   cursor: pointer;
   transition: border-color 0.25s;
   width: 300px;
+  color:white;
 }
 #uploadButton:hover {
   border-color: #646cff;
+  color:white;
 }
 #uploadButton:focus,
 #uploadButton:focus-visible {
