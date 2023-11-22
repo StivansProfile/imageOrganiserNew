@@ -19,4 +19,8 @@
 
 <ul>
   <li>React + TypeScript</li>
+  <li>Firebase</li>
+  <li>Vercel for deployment</li>
 </ul>
+
+
